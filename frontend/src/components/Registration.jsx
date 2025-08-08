@@ -1,40 +1,38 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 function Registration() {
-    const [name, setName] = useState("");
+    const [username, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = async(e) => { // aync function helps to handle slow network requests
         e.preventDefault(); // Prevent the default form submission behavior
-        axios.post('http://localhost:3001/register', {
-            username: name,
-            email: email,
-            password: password
-        })
-        .then(response => {
+        try{
+            const response = await axios.post('http://localhost:3001/api/auth/register', {
+            username, email, password
+        });
             console.log("Registration successful:", response.data);
             // Redirect to login or home page after successful registration
             window.location.href = '/login';
-        })
-        .catch(error => {
+        }
+        catch(error){
             console.error("There was an error registering!", error);
-            alert("Registration failed. Please try again.");
-        });
+            alert(error.response?.data?.message || "Registration failed. Please try again.");
+        };
     };
     
     return (
         <div className='login-container'>
             <div className="left-panel">
-                <div class="tree">
-                    <div class="leaves"></div>
-                    <div class="trunk"></div>
+                <div className="tree">
+                    <div className="leaves"></div>
+                    <div className="trunk"></div>
                 </div>
-                <div class="floating-leaves leaf-1"></div>
-                <div class="floating-leaves leaf-2"></div>
-                <div class="floating-leaves leaf-3"></div>
-                <div class="ground"></div>
+                <div className="floating-leaves leaf-1"></div>
+                <div className="floating-leaves leaf-2"></div>
+                <div className="floating-leaves leaf-3"></div>
+                <div className="ground"></div>
             </div>
             <div className="right-panel">
                 <div className="login-form">
@@ -46,7 +44,7 @@ function Registration() {
                         </div>
                         <div className='form-group'>    
                             <label>Email:</label>
-                            <input type="text" name="username" onChange={(e)=>setEmail(e.target.value)} required/>
+                            <input type="text" name="email" onChange={(e)=>setEmail(e.target.value)} required/>
                         </div>
                         <div className='form-group'>
                             <label>Password:</label>

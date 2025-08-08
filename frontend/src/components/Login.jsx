@@ -1,20 +1,23 @@
 import React from "react";
 import axios from "axios";
 import "../style/login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/login", { 
+    axios.post("http://localhost:3001/api/auth/login", { 
       email: email, 
       password: password 
     })
       .then((response) => {
         console.log("Login successful:", response.data);
         alert("Login successful!");
+        navigate('/home');
       })
       .catch((error) => {
         console.error("Login error:", error.response?.data?.message || error.message);
@@ -25,14 +28,14 @@ function Login() {
   return (
     <div className="login-container">
       <div className="left-panel">
-        <div class="tree">
-          <div class="leaves"></div>
-          <div class="trunk"></div>
+        <div className="tree">
+            <div className="leaves"></div>
+            <div className="trunk"></div>
         </div>
-        <div class="floating-leaves leaf-1"></div>
-        <div class="floating-leaves leaf-2"></div>
-        <div class="floating-leaves leaf-3"></div>
-        <div class="ground"></div>
+        <div className="floating-leaves leaf-1"></div>
+        <div className="floating-leaves leaf-2"></div>
+        <div className="floating-leaves leaf-3"></div>
+        <div className="ground"></div>
       </div>
       <div className="right-panel">
         <div className="login-form">
@@ -54,7 +57,7 @@ function Login() {
               <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
             </div>
             <button type="submit" className="login-btn">Login</button>
-            <p class="signup-link">Don't have an account?
+            <p className="signup-link">Don't have an account?
             <a href="/register" className="registration-link">
           Register here
         </a></p>
