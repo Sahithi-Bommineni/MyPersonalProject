@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom' //to handle cient-side routing
 import Registration from './components/Registration'
-import Login from './components/Login'
+import Login from './components/login'
 
 function App() {
 

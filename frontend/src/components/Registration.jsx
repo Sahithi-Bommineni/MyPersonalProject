@@ -8,7 +8,7 @@ function Registration() {
 
     const handleSubmit = async(e) => { // aync function helps to handle slow network requests
         e.preventDefault(); // Prevent the default form submission behavior
-        axios.post('/api/register', {
+        axios.post('http://localhost:3001/register', {
             username: name,
             email: email,
             password: password
@@ -25,25 +25,42 @@ function Registration() {
     };
     
     return (
-        <div>
-            <h1>Registration Page</h1>
-            <form onSubmit={handleSubmit}>
-                <label> Username:
-                    <input type="text" name="username" onChange={(e)=>setName(e.target.value)} required/>
-                </label><br />
-                <label>Email:
-                    <input type="text" name="username" onChange={(e)=>setEmail(e.target.value)} required/>
-                </label><br />
-                <label>Password:
-                    <input type="password" name="password" onChange={(e)=>setPassword(e.target.value)} required/>
-                </label><br />
-                <button type="submit">Register</button>
-            </form>
-            <p>Already have an account?</p>
-            <a href="/login" className="login-link">
-                Login here
-            </a>
-        </div>
+        <div className='login-container'>
+            <div className="left-panel">
+                <div class="tree">
+                    <div class="leaves"></div>
+                    <div class="trunk"></div>
+                </div>
+                <div class="floating-leaves leaf-1"></div>
+                <div class="floating-leaves leaf-2"></div>
+                <div class="floating-leaves leaf-3"></div>
+                <div class="ground"></div>
+            </div>
+            <div className="right-panel">
+                <div className="login-form">
+                    <h1>Registration Page</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label> Username:</label>
+                            <input type="text" name="username" onChange={(e)=>setName(e.target.value)} required/>
+                        </div>
+                        <div className='form-group'>    
+                            <label>Email:</label>
+                            <input type="text" name="username" onChange={(e)=>setEmail(e.target.value)} required/>
+                        </div>
+                        <div className='form-group'>
+                            <label>Password:</label>
+                            <input type="password" name="password" onChange={(e)=>setPassword(e.target.value)} required/>
+                        </div>
+                        <button type="submit" className='login-btn'>Register</button>
+                        <p className='signup-link'>Already have an account?
+                            <a href="/login" className="login-link">
+                                Login here
+                            </a></p>
+                    </form>
+                </div>
+            </div>
+        </div> 
     );
 }
 
