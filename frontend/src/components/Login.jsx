@@ -17,6 +17,8 @@ function Login() {
       .then((response) => {
         console.log("Login successful:", response.data);
         alert("Login successful!");
+        const userData = response.data.user;
+        localStorage.setItem("user", JSON.stringify(userData));
         navigate('/home');
       })
       .catch((error) => {

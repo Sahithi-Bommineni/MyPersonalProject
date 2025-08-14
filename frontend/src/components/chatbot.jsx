@@ -10,7 +10,7 @@ function Chatbot(){
             </div>
             <div className="chat-input-container">
                 <input type="text" className="chat-input" placeholder="Type your message..." id="chatInput"/>
-                <button className="send-btn" onclick="sendMessage()">Send</button>
+                <button className="send-btn">Send</button>
             </div>
         </div>
         </>
